@@ -1,18 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import usePathFill from '../../hooks/stores/usePathFill'
+
 
 const Treasure = () => {
 
-  const pathFill = () => {
-    let paths = document.querySelectorAll('path')
-    paths.forEach((path)=>{
-      path.getAttribute('fill') == '#575a88' && path.classList.add('fill-primary-color')
-    })
-  }
+  usePathFill()
 
-
-  useEffect(() => {
-      pathFill()
-  }, [])
   
 
   return (

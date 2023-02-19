@@ -128,7 +128,7 @@ const Nav = () => {
                 <div className="hidden lg:block">
                     <Colors id={'colorNavWrap'} key={'colorNavWrap'}  selectorId={'colorNav'} selectorBtnId={'colorNavBtn'} />  
                 </div>            
-                {/* <input type="color" name="primary" id="primary" onChange={handleTheme} defaultValue={primary} /> */}
+                <input type="color" name="primary" id="primary" onChange={handleTheme} defaultValue={primary} />
                 <button className='hidden lg:block' onClick={()=>{variant == 'light' ? changeVariant('dark') : changeVariant('light')}}>
                     {variant == 'light' ? <BiMoon size="20px" color={primary} /> : <BiSun color='orange' size="20px" />}
                 </button>
