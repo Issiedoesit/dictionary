@@ -14,7 +14,7 @@ const FilteredSearch = ({ query, searchHistory, modalId  }) => {
   return (
     
     <ModalBodyWrap modalId={'filteredSearch'}>
-        <div className={`w-[50%] h-[90%] grid grid-rows-6 overflow-hidden z-20 rounded-lg py-4 bg-white m-auto`}>
+        <div className={`w-ninetyPercent sm:w-seventyPercent md:w-sixtyPercent lg:w-fiftyPercent h-ninetyPercent grid grid-rows-6 overflow-hidden z-20 rounded-lg py-4 bg-white m-auto`}>
             <div className='row-span-1 px-6'>
                 <label htmlFor="filterSearch" className='focus-within:border-primary-color w-full mx-auto flex  gap-4 px-4 py-2 rounded-lg border'>
                     <input onChange={handleFilter}  type="search" name='filterSearch' defaultValue={filters} id='filterSearch' className='focus:outline-none focus:ring-0 w-full px-2 rounded-lg bg-transparent text-theme-text-color' placeholder='Browse Your History ...' />
