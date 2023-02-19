@@ -8,9 +8,11 @@ import Treasure from '../../components/Undraw/Treasure'
 import QAEngineer from '../Undraw/QAEngineer'
 import FilteredSearch from '../Elements/Modals/FilteredSearch'
 import useModalStore from '../../hooks/useModalStore'
+import {useDocTitle} from '../../hooks/DocumentTitle'
 
 
 const Word = () => {
+    useDocTitle(`Wordive | Meaning of ${(location.pathname.split('/')[2])}`)
     useModalStore()
     const location = useLocation()
     const navigate = useNavigate ();

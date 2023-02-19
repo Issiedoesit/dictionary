@@ -14,10 +14,12 @@ function App() {
       <div>
         <Nav />
       </div>
-      <Routes>
-        <Route path='/' index element={<Home />} />
-        <Route path='/word/:query' element={<Word />}/>
-      </Routes>
+      <div>
+        <Routes>
+          <Route path='/' index element={<Home />} />
+          <Route path='/word/:query' element={<Word />}/>
+        </Routes>
+      </div>
     </div>
   )
 }

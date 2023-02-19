@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import $ from 'jquery'
 import { NavLink } from 'react-router-dom'
-import Logo from '../../assets/media/logos/dc-logo.png'
 import useThemeStore from '../../hooks/stores/useThemeStore'
 import { BiSun, BiMoon } from 'react-icons/bi'
 import Colors from '../Colors/Colors'
@@ -17,6 +16,23 @@ const Nav = () => {
         changeTheme({...theme, [e.target.name ] : e.target.value})
     }
 
+
+    const handleInnerMenu = () => {
+        $('#games').on('mouseover', function(){
+            $('#innerMenu').removeClass('invisible opacity-0 translate-y-10')
+            $('#gamesSVG').addClass('lg:rotate-180')
+        })
+
+        $(document).on('mouseover', function(e) {
+            if(!(($(e.target).closest('#innerMenu').length > 0 ) || ($(e.target).closest('#navItemWrap').length > 0))){
+              if (!($('#innerMenu').hasClass('translate-y-10'))) {
+                $('#innerMenu').addClass('invisible opacity-0 translate-y-10');
+                $('#gamesSVG').removeClass('lg:rotate-180')
+              }
+            }
+          })
+    }
+
     const changeVariant = (type) => {
         changeTheme({...theme, ["variant"] : type})
     }
@@ -26,6 +42,13 @@ const Nav = () => {
         variant == 'light' ? $(document.body).css("--text-theme", "#161616") : $(document.body).css("--text-theme", "#FFFFFF")
 
     }, [theme])
+    useEffect(() => {
+        document.addEventListener('mouseover', handleInnerMenu())
+       return () => {
+         document.removeEventListener('mouseover', handleInnerMenu())
+       }
+       
+     }, [])
 
   return (
     <nav className='px-5 sm:px-10 lg:px-20 py-6 flex gap-40 items-center justify-between'>
@@ -38,12 +61,18 @@ const Nav = () => {
             </NavLink>
         </div>
        <div className='font-semibold flex items-center justify-between w-full'>
-            <ul className='flex gap-4 items-center'>
+            <ul id='navItemWrap' className='flex gap-4 items-center'>
                 <li><NavLink to="#" className='nav-link'>Word of The Day</NavLink></li>
                 <li><NavLink to="/examples" className='nav-link'>Examples</NavLink></li>
                 <li className='h-full py-4 relative'>
-                    <NavLink to="/games" className='nav-link'>Games</NavLink>
-                    <div className={`absolute top-12 ${variant == 'light' ? 'bg-white' : 'bg-black'} px-6 py-3 rounded-lg w-fit right-0 border`}>
+                    <button id='games' type='button' className='flex py-2 px-5 lg:p-0 justify-between w-full lg:w-auto lg:gap-2 items-center border-dashed border-b border-b-brandGray3x lg:border-b-0'>
+                        Games
+                        <svg id='gamesSVG' className='transition-all duration-500 ease-in-out hidden lg:block' width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path className={'stroke-theme-text-color'} d="M16.6 7.9585L11.1667 13.3918C10.525 14.0335 9.47503 14.0335 8.83336 13.3918L3.40002 7.9585" stroke="#161616" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" />
+                        </svg>
+
+                    </button>
+                    <div id='innerMenu' className={`invisible opacity-0 translate-y-10 transition-all duration-500 ease-in-out z-50 absolute top-12 ${variant == 'light' ? 'bg-white' : 'bg-black'} px-6 py-3 rounded-lg w-fit right-0 border`}>
                         <div className='flex flex-col gap-3'>
                             <NavLink to="/games/hangman"  className={`hover:text-primary-color transition-all duration-500 ease-in-out`}>Hangman</NavLink>
                             <NavLink to="#" className={`hover:text-primary-color transition-all duration-500 ease-in-out`}>Hangman</NavLink>
