@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import useThemeStore from '../../hooks/stores/useThemeStore'
 import useComponentVisible from '../../hooks/useHideOnClickOutside'
 
-const Colors = () => {
+const Colors = ({ posHorizontal, posVertical }) => {
     const [color, setColor] = useState('hsl(230, 77%, 56%)')
     const [selected, setSelected] = useState(230)
     const theme = useThemeStore(state=>state.theme) 
@@ -46,7 +46,7 @@ const Colors = () => {
         <div className='p-1 bg-gray-200 w-fit h-fit flex items-center justify-center'>
             <button id='selector_btn' onClick={toggleColorSelector} className='h-5 w-12 bg-primary-color focus-within:'></button>
         </div>
-        <div id='selector' className={`hidden absolute top-10 right-0 rounded-lg border ${variant == 'light' ? 'bg-white' : 'bg-black'} z-40 shadow-lg px-4 py-4`}>
+        <div id='selector' className={`hidden absolute  ${posVertical || 'top-10'} ${posHorizontal || 'right-0'} rounded-lg border ${variant == 'light' ? 'bg-white' : 'bg-black'} z-40 shadow-lg px-4 py-4`}>
             <div className='grid grid-cols-51 auto-cols-max auto-rows-fr w-60 gap-y-0 gap-x-0 max-h-fit'>
                 {numArray.map((num, index)=>{
                     return <div className={`color-select ${selected == num && 'border'} `}>

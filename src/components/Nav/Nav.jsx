@@ -66,9 +66,15 @@ const Nav = () => {
                 </svg>
             </NavLink>
         </div>
-       <div id='menu' className={`invisible opacity-0 scale-90 border-0.5 font-semibold text-theme-text-color ${variant === 'light' ? 'bg-white' : 'bg-black'} lg:bg-transparent lg:flex items-center justify-between w-ninetyPercent z-50 lg:w-full lg:overflow-visible lg:scale-100 lg:opacity-100 transition-all duration-300 ease-out lg:visible absolute right-fiftyPercent translate-x-fiftyPercent sm:translate-x-0 sm:right-4 top-4 sm:w-350 h-fit lg:h-auto pt-4 pb-1 lg:p-0 rounded-lg lg:rounded-none shadow-xl lg:shadow-none lg:static`}>
+       <div id='menu' className={`invisible opacity-0 scale-90 border-0.5 lg:border-0 font-semibold text-theme-text-color ${variant === 'light' ? 'bg-white' : 'bg-black'} lg:bg-transparent lg:flex items-center justify-between w-ninetyPercent z-50 lg:w-full lg:overflow-visible lg:scale-100 lg:opacity-100 transition-all duration-300 ease-out lg:visible absolute right-fiftyPercent translate-x-fiftyPercent sm:translate-x-0 sm:right-4 top-4 sm:w-350 h-fit lg:h-auto pt-4 pb-1 lg:p-0 rounded-lg lg:rounded-none shadow-xl lg:shadow-none lg:static`}>
             <ul id='navItemWrap' className='lg:flex gap-4 items-center h-fit'>
-                <div className="lg:hidden flex justify-end py-4 px-5 lg:p-0">
+                <div className="lg:hidden flex justify-between w-full py-4 px-5 lg:p-0">
+                    <div className="flex items-center gap-2">
+                            <Colors posHorizontal={'left-0'} />              
+                            <button className='mx-auto lg:mx-0' onClick={()=>{variant == 'light' ? changeVariant('dark') : changeVariant('light')}}>
+                                {variant == 'light' ? <BiMoon size="20px" color={primary} /> : <BiSun color='orange' size="20px" />}
+                            </button>
+                        </div>
                     <button type='button' onClick={handleMobileMenu}>
                         <svg className='group' width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path className='group-hover:fill-primary-color fill-theme-text-color group-hover:shadow-md transition-all duration-500 ease-in-out' d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM15.36 14.3C15.65 14.59 15.65 15.07 15.36 15.36C15.21 15.51 15.02 15.58 14.83 15.58C14.64 15.58 14.45 15.51 14.3 15.36L12 13.06L9.7 15.36C9.55 15.51 9.36 15.58 9.17 15.58C8.98 15.58 8.79 15.51 8.64 15.36C8.50052 15.2189 8.4223 15.0284 8.4223 14.83C8.4223 14.6316 8.50052 14.4411 8.64 14.3L10.94 12L8.64 9.7C8.50052 9.55886 8.4223 9.36843 8.4223 9.17C8.4223 8.97157 8.50052 8.78114 8.64 8.64C8.93 8.35 9.41 8.35 9.7 8.64L12 10.94L14.3 8.64C14.59 8.35 15.07 8.35 15.36 8.64C15.65 8.93 15.65 9.41 15.36 9.7L13.06 12L15.36 14.3Z" fill="black"/>
@@ -87,11 +93,11 @@ const Nav = () => {
                     </button>
                     <button id='gamesDrop' onClick={()=>setDropGames(prevDropGames=>!prevDropGames)} type='button' className='flex lg:hidden py-2 px-5 lg:p-0 justify-between w-full lg:w-auto lg:gap-2 items-center border-dashed border-b border-b-brandGray3x lg:border-b-0'>
                         Games
-                        <svg id='gamesSVG' className='transition-all duration-500 ease-in-out block lg:hidden' width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path className={'stroke-theme-text-color'} d="M16.6 7.9585L11.1667 13.3918C10.525 14.0335 9.47503 14.0335 8.83336 13.3918L3.40002 7.9585" stroke="#161616" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" />
+                        <svg id='gamesSVG' className={`${dropGames && 'rotate-180'} transition-all duration-500 ease-in-out block lg:hidden`} width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path className={`stroke-theme-text-color`} d="M16.6 7.9585L11.1667 13.3918C10.525 14.0335 9.47503 14.0335 8.83336 13.3918L3.40002 7.9585" stroke="#161616" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" />
                         </svg>
                     </button>
-                    <div id='innerMenu' className={`lg:invisible lg:opacity-0 lg:translate-y-10 ${dropGames && 'h-0 max-h-0 overflow-hidden py-0'} transition-all duration-500 ease-in-out z-50 lg:absolute top-12 ${variant == 'light' ? 'bg-white' : 'bg-black'} px-6 py-3 lg:rounded-lg lg:w-fit right-0 border-b lg:border`}>
+                    <div id='innerMenu' className={`lg:invisible lg:opacity-0 lg:translate-y-10 ${dropGames && 'h-0 max-h-0 overflow-hidden py-0 lg:h-auto lg:max-h-none lg:overflow-visible'} transition-all duration-500 ease-in-out z-50 lg:absolute top-12 ${variant == 'light' ? 'bg-white' : 'bg-black'} px-6 py-3 lg:rounded-lg lg:w-fit right-0 border-b lg:border`}>
                         <div className='flex flex-col gap-3'>
                             <NavLink to="/games/hangman"  className={`hover:text-primary-color transition-all duration-500 ease-in-out`}>Hangman</NavLink>
                             <NavLink to="#" className={`hover:text-primary-color transition-all duration-500 ease-in-out`}>Hangman</NavLink>
@@ -104,12 +110,14 @@ const Nav = () => {
                 <NavLink to="/auth/login" className='px-6 py-2 text-primary-color'>
                     Login
                 </NavLink>
-                <NavLink to="/auth/sign-up" className='bg-primary-color rounded-3xl px-6 py-2 text-white'>
+                <NavLink to="/auth/sign-up" className='bg-primary-color whitespace-nowrap rounded-3xl px-6 py-2 text-white'>
                     Sign Up
                 </NavLink>  
-                <Colors />              
+                <div className="hidden lg:block">
+                    <Colors />  
+                </div>            
                 {/* <input type="color" name="primary" id="primary" onChange={handleTheme} defaultValue={primary} /> */}
-                <button className='' onClick={()=>{variant == 'light' ? changeVariant('dark') : changeVariant('light')}}>
+                <button className='hidden lg:block' onClick={()=>{variant == 'light' ? changeVariant('dark') : changeVariant('light')}}>
                     {variant == 'light' ? <BiMoon size="20px" color={primary} /> : <BiSun color='orange' size="20px" />}
                 </button>
             </div>
