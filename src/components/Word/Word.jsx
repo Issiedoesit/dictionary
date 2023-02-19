@@ -91,6 +91,10 @@ const Word = () => {
         handleSearch()
     }, [location.pathname])
 
+    useEffect(() => {
+        handleSearch()
+    }, [])
+
     
 
     useLayoutEffect(() => {
