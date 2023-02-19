@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import useThemeStore from '../../hooks/stores/useThemeStore'
 import useComponentVisible from '../../hooks/useHideOnClickOutside'
 
-const Colors = ({ posHorizontal, posVertical }) => {
+const Colors = ({ id, posHorizontal, posVertical, selectorId, selectorBtnId }) => {
     const [color, setColor] = useState('hsl(230, 77%, 56%)')
     const [selected, setSelected] = useState(230)
     const theme = useThemeStore(state=>state.theme) 
@@ -28,29 +28,29 @@ const Colors = ({ posHorizontal, posVertical }) => {
     }
 
     const toggleColorSelector = () => {
-        let selector = document.getElementById('selector')
+        let selector = document.getElementById(selectorId)
         selector.classList.toggle('hidden')
     }
 
     const closeColorSelector = () => {
-        let selector = document.getElementById('selector')
+        let selector = document.getElementById(selectorId)
         selector.classList.add('hidden')
     }
 
-    useComponentVisible('#selector_btn', '#selector', ()=>{closeColorSelector()})
+    useComponentVisible(`#${selectorBtnId}`, `#${selectorId}`, ()=>{closeColorSelector()})
 
 
 
   return (
-    <div className='relative w-fit h-fit cursor-pointer text-theme-text-color'>
+    <div id={id} className='relative z-40 w-fit h-fit cursor-pointer text-theme-text-color'>
         <div className='p-1 bg-gray-200 w-fit h-fit flex items-center justify-center'>
-            <button id='selector_btn' onClick={toggleColorSelector} className='h-5 w-12 bg-primary-color focus-within:'></button>
+            <button type="button" id={selectorBtnId} onClick={toggleColorSelector} className='h-5 w-12 bg-primary-color focus-within:'></button>
         </div>
-        <div id='selector' className={`hidden absolute  ${posVertical || 'top-10'} ${posHorizontal || 'right-0'} rounded-lg border ${variant == 'light' ? 'bg-white' : 'bg-black'} z-40 shadow-lg px-4 py-4`}>
+        <div id={selectorId} className={`hidden absolute  ${posVertical || 'top-10'} ${posHorizontal || 'right-0'} rounded-lg border ${variant == 'light' ? 'bg-white' : 'bg-black'} shadow-lg px-4 py-4`}>
             <div className='grid grid-cols-51 auto-cols-max auto-rows-fr w-60 gap-y-0 gap-x-0 max-h-fit'>
                 {numArray.map((num, index)=>{
                     return <div className={`color-select ${selected == num && 'border'} `}>
-                        <button onClick={()=>{handleTheme(num)}} className='w-full h-full' title={`hsl(${num}, 77%, 56%)`} key={index} style={{background:`hsl(${num}, 77%, 56%)`}}></button>
+                        <button type="button" onClick={()=>{handleTheme(num)}} className='w-full h-full' title={`hsl(${num}, 77%, 56%)`} key={index} style={{background:`hsl(${num}, 77%, 56%)`}}></button>
                     </div>
                 })}
             </div>

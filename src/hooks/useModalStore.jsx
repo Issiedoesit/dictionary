@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import $ from 'jquery'
+import useModalState from './stores/useModalState'
 
 const useModalStore = () => {
+    const changeModalOpen = useModalState(state=>state.changeModalOpen)
 
     
     const handleModal = () => {
@@ -10,6 +12,7 @@ const useModalStore = () => {
                 let current_modal = $(this).attr('data-modal')
                 $(`#${current_modal}`).removeClass('hidden')
                 $(`#${current_modal}`).addClass('flex')
+                changeModalOpen()
             })
         })
         $('.modal-closer').each(function(){
@@ -17,6 +20,7 @@ const useModalStore = () => {
                 let current_modal = $(this).attr('data-modal-close')
                 $(`#${current_modal}`).addClass('hidden')
                 $(`#${current_modal}`).removeClass('flex')
+                changeModalOpen()
             })
         })
     }

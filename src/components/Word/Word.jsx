@@ -99,7 +99,7 @@ const Word = () => {
     
 
   return (
-    <div className='text-primary-color px-5 sm:px-10 lg:px-20 py-10 md:py-14 w-full raleway'>
+    <div className='relative z-10 text-primary-color px-5 sm:px-10 lg:px-20 py-10 md:py-14 w-full raleway'>
         <div className='flex flex-col sm:flex-row gap-10'>
             <label htmlFor="search" className='focus-within:border-primary-color w-full sm:w-[90%] mx-auto flex  gap-4 px-4 py-2 rounded-lg border'>
                 <input onChange={handleChange} onKeyDown={handleKeyDown} type="search" name='search' id='search' className='focus:outline-none focus:ring-0 w-full px-2 rounded-lg bg-transparent text-theme-text-color' placeholder='Begin Searching ...' />
@@ -107,21 +107,20 @@ const Word = () => {
                     <AiOutlineSearch  color='white' size="20px" />
                 </NavLink>
             </label>
-            <div className='group relative z-30 self-end sm:self-start'>
-                <button onClick={()=>{document.getElementById('history').classList.toggle('hidden')}} className='flex gap-3 items-center w-fit rounded-lg bg-primary-color text-white px-4 py-2 text-sm font-semibold relative'>
+            <div className='group relative self-end sm:self-start'>
+                <button onClick={()=>{document.getElementById('history').classList.toggle('hidden')}} className='flex gap-3 items-center w-fit rounded-lg bg-primary-color text-white px-4 py-2 text-sm font-semibold'>
                     <p className='whitespace-nowrap'>View History</p>
                     <AiOutlineHistory size="28px" />
                 </button>
-                <ul id="history" className='z-30 bg-white hidden absolute top-hundredPercent right-0 px-4 py-4 space-y-3 text-left text-sm font-medium shadow-lg w-full rounded-bl-lg'>
+                <ul id="history" className='bg-white hidden absolute top-hundredPercent right-0 px-4 py-4 space-y-3 text-left text-sm font-medium shadow-lg w-full rounded-bl-lg'>
                     {searchHistory.slice(0,5).map((history, index)=>{
                         return <li key={index}> <NavLink to={`/word/${history.query}`}>{history.query}</NavLink></li>
                     })}
                     <li><button data-modal="filteredSearch" className='view-more modal-opener'>View more ...</button></li>
-                    <FilteredSearch query={query} searchHistory={searchHistory} />
                 </ul>
             </div>
         </div>
-        
+        <FilteredSearch query={query} searchHistory={searchHistory} />
         <div className='py-7'>
             {/* <p>{query}</p>
             <p>{JSON.stringify(searchResults)}</p> */}
