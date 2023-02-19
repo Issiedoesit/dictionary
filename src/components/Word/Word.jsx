@@ -12,9 +12,9 @@ import {useDocTitle} from '../../hooks/DocumentTitle'
 
 
 const Word = () => {
+    const location = useLocation()
     useDocTitle(`Wordive | Meaning of ${(location.pathname.split('/')[2])}`)
     useModalStore()
-    const location = useLocation()
     const navigate = useNavigate ();
     const [searchLoading, setSearchLoading] = useState(false)
     const [searchResults, setSearchResults] = useState([])
