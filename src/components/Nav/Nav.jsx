@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import useThemeStore from '../../hooks/stores/useThemeStore'
 import { BiSun, BiMoon } from 'react-icons/bi'
 import Colors from '../Colors/Colors'
+import useComponentVisible from '../../hooks/useHideOnClickOutside'
 
 
 const Nav = () => {
@@ -40,6 +41,12 @@ const Nav = () => {
         $('#menu').toggleClass('invisible opacity-0 scale-90')
     }
 
+    const closeMobileMenu = () => {
+        $('#menu').addClass('invisible opacity-0 scale-90')
+    }
+
+    useComponentVisible('#openMobileMenu', '#menu', ()=>closeMobileMenu())
+
     const changeVariant = (type) => {
         changeTheme({...theme, ["variant"] : type})
     }
@@ -66,7 +73,7 @@ const Nav = () => {
                 </svg>
             </NavLink>
         </div>
-       <div id='menu' className={`invisible opacity-0 scale-90 border-0.5 lg:border-0 font-semibold text-theme-text-color ${variant === 'light' ? 'bg-white' : 'bg-black'} lg:bg-transparent lg:flex items-center justify-between w-ninetyPercent z-50 lg:w-full lg:overflow-visible lg:scale-100 lg:opacity-100 transition-all duration-300 ease-out lg:visible absolute right-fiftyPercent translate-x-fiftyPercent sm:translate-x-0 sm:right-4 top-4 sm:w-350 h-fit lg:h-auto pt-4 pb-1 lg:p-0 rounded-lg lg:rounded-none shadow-xl lg:shadow-none lg:static`}>
+       <div id='menu' className={`invisible opacity-0 scale-90 border-0.5 lg:border-0 font-semibold text-theme-text-color ${variant === 'light' ? 'bg-white' : 'bg-black'} lg:bg-transparent lg:flex items-center justify-between w-ninetyPercent z-50 lg:z-0 lg:w-full lg:overflow-visible lg:scale-100 lg:opacity-100 transition-all duration-300 ease-out lg:visible absolute right-fiftyPercent translate-x-fiftyPercent sm:translate-x-0 sm:right-4 top-4 sm:w-350 h-fit lg:h-auto pt-4 pb-1 lg:p-0 rounded-lg lg:rounded-none shadow-xl lg:shadow-none lg:static`}>
             <ul id='navItemWrap' className='lg:flex gap-4 items-center h-fit'>
                 <div className="lg:hidden flex justify-between w-full py-4 px-5 lg:p-0">
                     <div className="flex items-center gap-2">
