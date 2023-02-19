@@ -1,0 +1,28 @@
+import React, { useEffect, useState } from 'react'
+import $ from 'jquery'
+
+const Home = () => {
+    const [theme, setTheme] = useState({
+        "primary": "#981C40"
+    })
+
+    const handleTheme = (e) => {
+        setTheme({...theme, [e.target.name ] : e.target.value})
+    }
+
+    useEffect(() => {
+        $(document.body).css("--color-primary", theme.primary)
+
+    }, [theme])
+    
+
+  return (
+    <div className='text-primary-color'>Home
+        <input type="color" name="primary" id="primary" onChange={handleTheme} defaultValue={theme.primary} />
+            <p>Primary color is: {theme.primary}</p>
+        <input type="color" name="themeBg" id="themeBg" />
+    </div>
+  )
+}
+
+export default Home

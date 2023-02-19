@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    :root {
+      --color-primary: pink;
+      --color-secondary: 111 114 185;
+      --text-theme: #161616;
+      --text-light-theme: #161616;
+      --text-dark-theme: #FFFFFF;
+      /* ... */
+    }
+}
+
+  @layer components {
+    .nav-link {
+      @apply py-2 px-4 hover:border-b-2 hover:border-b-primary-color transition-colors duration-500 ease-in-out;
+    }
+  }
+  
