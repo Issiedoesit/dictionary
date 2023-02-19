@@ -4,7 +4,7 @@ import {devtools} from 'zustand/middleware'
 
 const useModalState = create(devtools((set)=>({
     isModalOpen: false,
-    changeModalOpen: () => set((state) => ({isModalOpen: !state.isModalOpen})),
+    changeModalOpen: (val) => set({isModalOpen: val}),
 })))
 
 export default useModalState

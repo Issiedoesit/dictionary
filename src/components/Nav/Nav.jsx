@@ -109,7 +109,7 @@ const Nav = () => {
                             <path className={`stroke-theme-text-color`} d="M16.6 7.9585L11.1667 13.3918C10.525 14.0335 9.47503 14.0335 8.83336 13.3918L3.40002 7.9585" stroke="#161616" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" />
                         </svg>
                     </button>
-                    <div id='innerMenu' className={`lg:invisible lg:opacity-0 lg:translate-y-10 ${dropGames && 'h-0 max-h-0 overflow-hidden py-0 lg:h-auto lg:max-h-none lg:overflow-visible'} transition-all duration-500 ease-in-out z-50 lg:absolute top-12 ${variant == 'light' ? 'bg-white' : 'bg-black'} px-6 py-3 lg:rounded-lg lg:w-fit right-0 border-b lg:border`}>
+                    <div id='innerMenu' className={`lg:invisible lg:opacity-0 lg:translate-y-10 ${dropGames ? 'py-3' : 'h-0 max-h-0 overflow-hidden py-0 lg:h-auto lg:max-h-none lg:overflow-visible'} transition-all duration-500 ease-in-out z-50 lg:absolute top-12 ${variant == 'light' ? 'bg-white' : 'bg-black'} px-6 lg:py-3 lg:rounded-lg lg:w-fit right-0 border-b lg:border`}>
                         <div className='flex flex-col gap-3'>
                             <NavLink to="/games/hangman"  className={`hover:text-primary-color transition-all duration-500 ease-in-out`}>Hangman</NavLink>
                             <NavLink to="#" className={`hover:text-primary-color transition-all duration-500 ease-in-out`}>Hangman</NavLink>
