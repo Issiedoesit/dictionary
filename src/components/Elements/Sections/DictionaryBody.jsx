@@ -3,7 +3,7 @@ import  { BiVolumeFull } from 'react-icons/bi'
 import { NavLink } from 'react-router-dom'
 
 
-const DictionaryBody = ({ searchResults }) => {
+const DictionaryBody = ({ searchResults, setQuery }) => {
 
     const audioRef = useRef()
 

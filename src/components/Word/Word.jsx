@@ -154,7 +154,8 @@ const Word = () => {
                         </div>
                     </div>
                     :
-                    <DictionaryBody searchResults={searchResults} />
+                    <DictionaryBody searchResults={searchResults} key='wordBody'  setQuery={setQuery} />
+
                 }
             </div>
         }

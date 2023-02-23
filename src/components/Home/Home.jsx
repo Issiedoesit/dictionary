@@ -53,7 +53,7 @@ const Home = () => {
             {/* <p>{query}</p> */}
             {/* <p>{JSON.stringify(searchResults)}</p> */}
         </div>
-        <DictionaryBody searchResults={searchResults} />
+        <DictionaryBody searchResults={searchResults} key='homeBody'  setQuery={setQuery} />
     </div>
   )
 }
